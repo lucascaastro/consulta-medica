@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\MedSpecialist;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
@@ -41,7 +42,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
             return redirect()->route('dashboard');
         }
-        
+
         return back()->withError('Usuário ou senha incorretos');
     }
 
@@ -57,10 +58,20 @@ class AuthController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'cpf' => $request->cpf,
+            'rg' => $request->rg,
+            'dataNascimento' => $request->dataNascimento,
+            'type' => $request->type,
             'password' => bcrypt($request->password)
         ]);
-
         Auth::login($user);
+        if (!is_null($request->specialty)) {
+            MedSpecialist::create([
+                'specialty' => $request->specialty,
+                'user_id' => auth()->id()
+            ]);
+        }
+
 
         return redirect()->route('dashboard');
     }
