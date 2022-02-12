@@ -13,13 +13,14 @@ class CreateMedSpecialistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('med_specialists', function (Blueprint $table) {
+        Schema::create('doctors_specialists', function (Blueprint $table) {
             $table->id();
-            $table->string('specialty');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('specialist_id');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('specialist_id')->references('id')->on('specialists')->onDelete('cascade');
         });
     }
 

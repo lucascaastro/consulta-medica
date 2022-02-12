@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MedSpecialist;
-use App\Http\Requests\StoreMedSpecialistRequest;
-use App\Http\Requests\UpdateMedSpecialistRequest;
+use App\Models\Specialist;
+use App\Http\Requests\StoreSpecialistRequest;
+use App\Http\Requests\UpdateSpecialistRequest;
 
-class MedSpecialistController extends Controller
+class SpecialistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class MedSpecialistController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreMedSpecialistRequest  $request
+     * @param  \App\Http\Requests\StoreSpecialistRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMedSpecialistRequest $request)
+    public function store(StoreSpecialistRequest $request)
     {
         //
     }
@@ -42,10 +42,10 @@ class MedSpecialistController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\MedSpecialist  $medSpecialist
+     * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function show(MedSpecialist $medSpecialist)
+    public function show(Specialist $specialist)
     {
         //
     }
@@ -53,10 +53,10 @@ class MedSpecialistController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\MedSpecialist  $medSpecialist
+     * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function edit(MedSpecialist $medSpecialist)
+    public function edit(Specialist $specialist)
     {
         //
     }
@@ -64,11 +64,11 @@ class MedSpecialistController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateMedSpecialistRequest  $request
-     * @param  \App\Models\MedSpecialist  $medSpecialist
+     * @param  \App\Http\Requests\UpdateSpecialistRequest  $request
+     * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMedSpecialistRequest $request, MedSpecialist $medSpecialist)
+    public function update(UpdateSpecialistRequest $request, Specialist $specialist)
     {
         //
     }
@@ -76,10 +76,10 @@ class MedSpecialistController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\MedSpecialist  $medSpecialist
+     * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MedSpecialist $medSpecialist)
+    public function destroy(Specialist $specialist)
     {
         //
     }

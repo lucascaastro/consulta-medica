@@ -15,15 +15,16 @@ class CreateConsultsTable extends Migration
     {
         Schema::create('consults', function (Blueprint $table) {
             $table->id();
-
-            $table->string('doctor');
-            $table->string('patient');
+            $table->unsignedBigInteger('doctor_id');
+            $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('user_id');
             $table->date('date');
             $table->time('hour');
-            $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
 
+            $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

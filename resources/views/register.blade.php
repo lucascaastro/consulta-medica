@@ -8,8 +8,11 @@
     <form class="mw-100" action="{{ route('signup') }}" method="post" style="width: 400px;">
         @csrf
 
-        <h1 class="mb-5 text-secondary text-center">Cadastro</h1>
+        <div class="text-center mb-2 ">
+            <img src="{{ asset('images/logo.png') }}" width="150">
 
+        </div>
+        <h4 class="text-center text-success ">Cadastre-se</h4>
         <div class="mb-3">
             <input class="form-control" name="name" placeholder="Nome" required>
         </div>
@@ -27,7 +30,7 @@
         </div>
 
         <div class="mb-3">
-            <input type="date" class="form-control" name="dataNascimento" placeholder="Data de Nascimento" required>
+            <input type="date" class="form-control" name="birth" placeholder="Data de Nascimento" required>
         </div>
 
         <div class="mb-3">
@@ -40,30 +43,11 @@
         </div>
 
         <div class="mb-3">
-            <select id="specialty" name="specialty" class="form-select" aria-label="Default select example">
+            <select id="specialty" name="specialty[]" class="form-select" multiple>
                 <option selected disabled>Selecione sua especializado</option>
-                <option value="Anestesiologia">Anestesiologia</option>
-                <option value="Cancerologia">Cancerologia</option>
-                <option value="Cirurgia geral">Cirurgia geral</option>
-                <option value="Clínica médica">Clínica médica</option>
-                <option value="Cirurgia plástica">Cirurgia plástica </option>
-                <option value="Coloproctologia">Coloproctologia</option>
-                <option value="Dermatologia">Dermatologia</option>
-                <option value="Endocrinologia">Endocrinologia</option>
-                <option value="Gastroenterologia">Gastroenterologia</option>
-                <option value="Genética médica">Genética médica</option>
-                <option value="Geriatria">Geriatria</option>
-                <option value="Ginecologia e obstetrícia">Ginecologia e obstetrícia</option>
-                <option value="Hematologia">Hematologia</option>
-                <option value="Mastologia">Mastologia</option>
-                <option value="Medicina de emergência">Medicina de emergência</option>
-                <option value="Medicina legal ou medicina forense">Medicina legal ou medicina forense</option>
-                <option value="Neurologia">Neurologia</option>
-                <option value="Oftalmologia">Oftalmologia</option>
-                <option value="Ortopedia">Ortopedia</option>
-                <option value="Pediatria">Pediatria</option>
-                <option value="Psiquiatria">Psiquiatria</option>
-                <option value="Urologia">Urologia</option>
+                @foreach($specialists as $specialist)
+                <option value="{{ $specialist->id }}">{{ $specialist->name }}</option>
+                @endforeach
             </select>
         </div>
 
@@ -83,7 +67,7 @@
         </div>
 
         <div class="d-grid gap-2">
-            <button class="btn btn-outline-primary" type="submit">Cadastrar</button>
+            <button class="btn btn-outline-success" type="submit">Cadastrar agora</button>
             <a class="link-secondary" href="{{ route('login') }}">Login</a>
         </div>
     </form>
