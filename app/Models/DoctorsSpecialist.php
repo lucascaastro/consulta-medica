@@ -13,4 +13,9 @@ class DoctorsSpecialist extends Model
         'specialist_id',
         'doctor_id'
     ];
+
+    public function specialists()
+    {
+        return $this->belongsTo(Specialist::class, 'specialist_id');
+    }
 }

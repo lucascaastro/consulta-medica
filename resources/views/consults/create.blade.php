@@ -15,25 +15,23 @@
             @csrf
             <h1>Insira uma consulta</h1>
             <div class="mb-3">
-                <select name="doctor" class="form-select" size="3" aria-label="size 3 select example">
+                <select name="doctor" id="doctor" class="form-select">
                     <option disabled selected>Selecione o Médico</option>
                     @foreach($doctors as $doctor)
-                    @foreach($specialists as $specialist)
-                    <option
-                        value="{{ $doctor->name .' - '. $specialist->where('user_id',$doctor->id)->limit(1)->get() }}">
-                        {{
-                        $doctor->name
-                        . ' - '.
-                        $specialist->specialty }}</option>
-                    @endforeach
+                    <option value="{{ $doctor->name }}">{{ $doctor->name}}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="mb-3">
-                <select name="patient" class="form-select" size="3" aria-label="size 3 select example">
+            <div class=" mb-3">
+                <select name="specialist" id="specialist" class="form-select">
+                    <option disabled selected>Selecione o especialidade</option>
+                </select>
+            </div>
+            <div class=" mb-3">
+                <select name="patient" class="form-select">
                     <option disabled selected>Selecione o Paciente</option>
                     @foreach($patients as $patient)
-                    <option value="{{ $patient->name }}">{{ $patient->name }}</option>
+                    <option value="{{ $patient->id }}">{{ $patient->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -51,3 +49,11 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $("#doctor").on('change', function () {
+    alert($("#doctor").val());
+    })
+</script>
+@endpush

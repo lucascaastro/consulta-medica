@@ -10,10 +10,19 @@ class Consult extends Model
     use HasFactory;
 
     protected $fillable = [
-        'doctor',
-        'patient',
+        'doctor_id',
+        'patient_id',
+        'user_id',
         'date',
-        'hour',
-        'user_id'
+        'hour'
     ];
+
+    public function doctors()
+    {
+        return $this->belongsTo(User::class, 'doctor_id');
+    }
+    public function patients()
+    {
+        return $this->belongsTo(User::class, 'patient_id');
+    }
 }

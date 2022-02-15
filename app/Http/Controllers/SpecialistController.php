@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Specialist;
 use App\Http\Requests\StoreSpecialistRequest;
 use App\Http\Requests\UpdateSpecialistRequest;
+use Illuminate\Http\Request;
 
 class SpecialistController extends Controller
 {
@@ -15,7 +16,9 @@ class SpecialistController extends Controller
      */
     public function index()
     {
-        //
+        $specialists = Specialist::all();
+
+        return view('specialists.index', compact('specialists'));
     }
 
     /**
@@ -26,6 +29,8 @@ class SpecialistController extends Controller
     public function create()
     {
         //
+
+
     }
 
     /**
@@ -56,9 +61,10 @@ class SpecialistController extends Controller
      * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function edit(Specialist $specialist)
+    public function edit($id)
     {
-        //
+        $specialist = Specialist::find($id);
+        return view('specialists.edit', compact('specialist'));
     }
 
     /**
@@ -68,9 +74,13 @@ class SpecialistController extends Controller
      * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSpecialistRequest $request, Specialist $specialist)
+    public function update(Request $request, $id)
     {
-        //
+        $specialist = Specialist::find($id);
+        $specialist->update([
+            'name' => $request->name
+        ]);
+        return redirect('/specialists/index');
     }
 
     /**
@@ -79,8 +89,10 @@ class SpecialistController extends Controller
      * @param  \App\Models\Specialist  $specialist
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Specialist $specialist)
+    public function destroy($id)
     {
-        //
+        $specialist = Specialist::find($id);
+        $specialist->delete();
+        return redirect('/specialists/index');
     }
 }

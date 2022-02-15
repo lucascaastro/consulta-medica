@@ -20,7 +20,7 @@ class ConsultController extends Controller
         $user = auth()->user();
         $consults = Consult::orderBy('id', 'desc')->get();
 
-        return view('consults.dashboard', compact('user', 'consults'));
+        return view('/dashboard', compact('user', 'consults'));
     }
 
     /**
@@ -34,14 +34,8 @@ class ConsultController extends Controller
 
         $patients = User::where('type', 'Paciente')->get();
         $doctors = User::where('type', 'Médico')->get();
-        // $specialists = MedSpecialist::all();
 
-        // $specialists = MedSpecialist::join('users', 'users.id', '=', 'ocurrences.user_id')
-        //     ->orderByRaw('RAND()')
-        //     ->limit(4)
-        //     ->get();
-
-        return view('consults.create', compact('users', 'patients', 'doctors', 'specialists'));
+        return view('consults.create', compact('users', 'patients', 'doctors'));
     }
 
     /**
@@ -52,15 +46,11 @@ class ConsultController extends Controller
      */
     public function store(StoreConsultRequest $request)
     {
-        $user = auth()->user();
+        $input = $request->all();
 
-        Consult::create([
-            'doctor' => $request->doctor,
-            'patient' => $request->patient,
-            'date' => $request->date,
-            'hour' => $request->hour,
-            'user_id' => $user->id
-        ]);
+        $input["user_id"] = auth()->id();
+
+        Consult::create($input);
 
         return redirect('/dashboard');
     }

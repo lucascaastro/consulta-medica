@@ -23,7 +23,10 @@ class AuthController extends Controller
     {
         return view('login');
     }
-
+    public function specialist_doctor($id)
+    {
+        return DoctorsSpecialist::with('specialists')->where('doctor_id', $id)->get();
+    }
     /**
      * Mostra página de registro de usuário
      *
@@ -45,6 +48,7 @@ class AuthController extends Controller
      */
     public function signin(Request $request)
     {
+
         if (Auth::attempt($request->only('email', 'password'))) {
             $request->session()->regenerate();
             return redirect()->route('dashboard');

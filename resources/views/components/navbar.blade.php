@@ -6,9 +6,13 @@
         right: 0;
         z-index: 1030;
         bottom: 0;
-        width: 240px;
+        width: 232px;
         flex-flow: column nowrap;
         align-items: flex-start;
+    }
+
+    .icon-doctor {
+        margin-left: -75px;
     }
 </style>
 
@@ -18,25 +22,31 @@
             <img src="{{ asset('images/logo.png') }}" width="100">
         </a>
     </div>
-    <div class=" container-fluid" style="width: 900px; max-width: 100%;">
+    <div class="container-fluid" style="width: 900px; max-width: 100%;">
         <div class="navbar-nav flex-column">
             <ul class="navbar-nav me-auto mb-2 mb-md-0 flex-column  ">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/consults/create">
-                        <i class="bi bi-calendar2-plus fs-4 btn-outline-success "></i>
-                        <span class="font-weight-bold text-success h6"> Adicionar Consulta</span>
+                    <a class="nav-link btn" href="/consults/create">
+                        <i class="bi bi-calendar-plus-fill fs-5 btn-outline-success"></i>
+                        <span class="font-weight-bold text-success h6">Adicionar Consulta</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/consults/create">
-                        <i class="bi bi-person-plus-fill fs-4 btn-outline-success "></i>
-                        <span class="font-weight-bold text-success h6"> Médicos</span>
+                    <a class="nav-link btn" href="/doctor/index">
+                        <i class=" bi bi-person-fill fs-5 btn-outline-success mr-4" style="margin-left: -76px;"></i>
+                        <span class=" font-wei ght-bold text-success h6">Médicos</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/doctor/index">
-                        <i class="bi bi-person-plus-fill fs-4 btn-outline-success "></i>
-                        <span class="font-weight-bold text-success h6"> Pacientes</span>
+                    <a class="nav-link btn" href="/specialists/index">
+                        <i class=" bi bi-bandaid-fill fs-5 btn-outline-success mr-4" style="margin-left: -45px;"></i>
+                        <span class=" font-wei ght-bold text-success h6">Especialidade</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" href="/patients/index">
+                        <i class="bi bi-person-fill fs-5 btn-outline-success" style="margin-left: -76px;"></i>
+                        <span class="font-weight-bold text-success h6">Pacientes</span>
                     </a>
                 </li>
             </ul>
