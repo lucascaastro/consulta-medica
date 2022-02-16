@@ -17,6 +17,7 @@ class CreateConsultsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('doctor_id');
             $table->unsignedBigInteger('patient_id');
+            $table->unsignedBigInteger('specialist_id');
             $table->unsignedBigInteger('user_id');
             $table->date('date');
             $table->time('hour');
@@ -25,6 +26,7 @@ class CreateConsultsTable extends Migration
 
             $table->foreign('doctor_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('specialist_id')->references('specialist_id')->on('doctors_specialists')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

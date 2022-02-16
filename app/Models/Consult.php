@@ -12,6 +12,7 @@ class Consult extends Model
     protected $fillable = [
         'doctor_id',
         'patient_id',
+        'specialist_id',
         'user_id',
         'date',
         'hour'
