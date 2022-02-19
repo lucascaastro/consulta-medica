@@ -16,14 +16,18 @@
     }
 </style>
 
+
 <nav class="navbar navbar-expand-md navbar-light bg-light">
+
     <div class="navbar-header">
         <a class="nav-link me-3 mb-4" href="/dashboard">
             <img src="{{ asset('images/logo.png') }}" width="100">
         </a>
+        <h1 class=" fs-6 text-success">Olá - {{ auth()->user()->name }}</h1>
     </div>
     <div class="container-fluid" style="width: 900px; max-width: 100%;">
         <div class="navbar-nav flex-column">
+            @if(auth()->user()->type == 'Operador')
             <ul class="navbar-nav me-auto mb-2 mb-md-0 flex-column  ">
                 <li class="nav-item">
                     <a class="nav-link btn" href="/consults/create">
@@ -39,8 +43,14 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link btn" href="/specialists/index">
-                        <i class=" bi bi-bandaid-fill fs-5 btn-outline-success mr-4" style="margin-left: -45px;"></i>
-                        <span class=" font-wei ght-bold text-success h6">Especialidade</span>
+                        <i class=" bi bi-bandaid-fill fs-5 btn-outline-success mr-4" style="margin-left: -37px;"></i>
+                        <span class=" font-wei ght-bold text-success h6">Especialidades</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" href="/specialists/create">
+                        <i class=" bi bi-bandaid-fill fs-5 btn-outline-success mr-4" style="margin-left: -8px;"></i>
+                        <span class=" font-wei ght-bold text-success h6">Criar Especialidade</span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -49,19 +59,17 @@
                         <span class="font-weight-bold text-success h6">Pacientes</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link btn" href="{{ route('registerUser') }}">
+                        <i class="bi bi-person-plus-fill fs-5 btn-outline-success" style="margin-left: -22px;"></i>
+                        <span class="font-weight-bold text-success h6">Criar um usuário</span>
+                    </a>
+                </li>
             </ul>
-            <a class="nav-link fixed-bottom" href="/consults/create">
+            @endif
+            <a class="nav-link fixed-bottom" href="/user/edit/{{ auth()->user()->id }}">
                 <i class="bi bi-person-circle fs-2 btn-outline-success "></i>
             </a>
-            {{-- <a class=" nav-link me-3" href="/consults/create">
-                <i class="bi bi-calendar2-plus fs-3 btn-outline-success "></i>
-            </a>
-            <a class="nav-link me-3" href="/users/create">
-                <i class="bi  bi-person-plus-fill fs-3 btn-outline-success"></i>
-            </a>
-            <a class="nav-link me-3" href="/users/config">
-                <i class="bi bi-person-circle fs-3 btn-outline-success"></i>
-            </a> --}}
         </div>
     </div>
 </nav>

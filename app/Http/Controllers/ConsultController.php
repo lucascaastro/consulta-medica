@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Consult;
+use App\Models\MedSpecialist;
+use App\Models\DoctorsSpecialist;
 use App\Http\Requests\StoreConsultRequest;
 use App\Http\Requests\UpdateConsultRequest;
-use App\Models\MedSpecialist;
 
 class ConsultController extends Controller
 {
@@ -18,8 +19,14 @@ class ConsultController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $consults = Consult::orderBy('id', 'desc')->get();
-
+        if (auth()->user()->type == 'Operador') {
+            $consults = Consult::orderBy('id', 'desc')->get();
+            return view('/dashboard', compact('user', 'consults'));
+        } elseif (auth()->user()->type == 'Paciente') {
+            $consults = Consult::orderBy('id', 'desc')->where('patient_id', auth()->user()->id)->get();
+            return view('/dashboard', compact('user', 'consults'));
+        }
+        $consults = Consult::orderBy('id', 'desc')->where('doctor_id', auth()->user()->id)->get();
         return view('/dashboard', compact('user', 'consults'));
     }
 
@@ -32,10 +39,13 @@ class ConsultController extends Controller
     {
         $users = auth()->user();
 
+        $specialists = DoctorsSpecialist::join('specialists', 'specialists.id', 'doctors_specialists.specialist_id')
+            ->where('specialists.id', '=', 'doctors_specialists.specialist_id')->get();
+
         $patients = User::where('type', 'Paciente')->get();
         $doctors = User::where('type', 'Médico')->get();
 
-        return view('consults.create', compact('users', 'patients', 'doctors'));
+        return view('consults.create', compact('users', 'patients', 'doctors', 'specialists'));
     }
 
     /**
@@ -95,8 +105,10 @@ class ConsultController extends Controller
      * @param  \App\Models\Consult  $consult
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Consult $consult)
+    public function destroy($id)
     {
-        //
+        $consult = Consult::find($id);
+        $consult->delete();
+        return redirect('/dashboard');
     }
 }

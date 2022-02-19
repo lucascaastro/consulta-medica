@@ -35,8 +35,9 @@ class AuthController extends Controller
     public function register()
     {
         $specialists = Specialist::all();
+        $users = auth()->user();
 
-        return view('register', compact('specialists'));
+        return view('register', compact('specialists', 'users'));
     }
 
     /**
@@ -57,6 +58,27 @@ class AuthController extends Controller
         return back()->withError('Usuário ou senha incorretos');
     }
 
+    public function edit($id)
+    {
+
+        $user = User::find($id);
+
+        return view('user-edit', compact('user'));
+    }
+    public function Update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'cpf' => $request->cpf,
+            'rg' => $request->rg,
+            'birth' => $request->birth,
+            'password' => $request->password
+        ]);
+        return redirect('dashboard');
+    }
+
     /**
      * Executa o registro do usuário
      *
@@ -64,6 +86,42 @@ class AuthController extends Controller
      *
      * @return redirect
      */
+    public function registerUser(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'cpf' => $request->cpf,
+                'rg' => $request->rg,
+                'birth' => $request->birth,
+                'type' => $request->type,
+                'password' => bcrypt($request->password)
+            ]);
+            if (is_array($request->specialty)) {
+                foreach ($request->specialty as $specialty) {
+                    DoctorsSpecialist::create([
+                        'specialist_id' => $specialty,
+                        'doctor_id' => $user->id
+                    ]);
+                }
+            }
+            DB::commit();
+
+            //Auth::login($user);
+
+            return redirect()->route('dashboard');
+        } catch (Exception $error) {
+            DB::rollBack();
+            Log::error($error);
+            return redirect()
+                ->route('register')
+                ->withInput($request->all());
+        }
+    }
+
     public function signup(Request $request)
     {
         DB::beginTransaction();

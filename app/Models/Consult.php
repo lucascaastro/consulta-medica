@@ -26,4 +26,8 @@ class Consult extends Model
     {
         return $this->belongsTo(User::class, 'patient_id');
     }
+    public function specialists()
+    {
+        return $this->belongsTo(User::class, 'specialist_id');
+    }
 }

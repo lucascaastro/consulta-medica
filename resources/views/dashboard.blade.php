@@ -6,7 +6,7 @@
 
 @section('content')
 @include('components.navbar')
-<div class="min-vh-100 d-flex align-items-center" style="margin-top: -209px;margin-left: 243px;">
+<div class="min-vh-100 d-flex align-items-center" style="margin-top: -209px;margin-left: 243px; overflow-y: auto ;">
     <div class="container-fluid">
         <div class="card-body">
             <div class="card shadow align-items-center">
@@ -45,12 +45,12 @@
                                 <td>{{ $consult->date }}</td>
                                 <td>{{ $consult->hour }}</td>
                                 <td>
-                                    <a href="/patients/edit/">
+                                    <a href="/user/edit/">
                                         <button type="submit" class="btn btn-outline-success">
                                             Editar
                                         </button>
                                     </a>
-                                    <a href="/patients/delete/">
+                                    <a href="/consults/delete/{{ $consult->id }}">
                                         <button class=" btn btn-outline-danger">
                                             Excluir
                                         </button>

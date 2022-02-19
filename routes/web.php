@@ -29,6 +29,16 @@ Route::get('/dashboard', [
     'index'
 ])->name('dashboard')->middleware('auth');
 
+Route::get('/user/edit/{id}', [
+    AuthController::class,
+    'edit'
+])->middleware('auth');
+
+Route::post('/user/update/{id}', [
+    AuthController::class,
+    'update'
+])->middleware('auth');
+
 Route::get('/consults/create', [
     ConsultController::class,
     'create'
@@ -39,6 +49,11 @@ Route::post('/consults/store', [
     'store'
 ])->middleware('auth');
 
+Route::get('/consults/delete/{id}', [
+    ConsultController::class,
+    'destroy'
+])->middleware('auth');
+
 Route::get('/doctor/index', [
     DoctorController::class,
     'index'
@@ -47,16 +62,6 @@ Route::get('/doctor/index', [
 Route::get('/patients/index', [
     PatientController::class,
     'index'
-])->middleware('auth');
-
-Route::get('/patients/edit/{id}', [
-    PatientController::class,
-    'edit'
-])->middleware('auth');
-
-Route::post('/patients/update/{id}', [
-    PatientController::class,
-    'update'
 ])->middleware('auth');
 
 Route::get('/patients/delete/{id}', [
@@ -78,6 +83,17 @@ Route::post('/specialists/update/{id}', [
     SpecialistController::class,
     'update'
 ])->middleware('auth');
+
+Route::get('/specialists/create', [
+    SpecialistController::class,
+    'create'
+])->middleware('auth');
+
+Route::post('/specialists/store', [
+    SpecialistController::class,
+    'store'
+])->middleware('auth');
+
 Route::get('/specialists/delete/{id}', [
     SpecialistController::class,
     'destroy'
@@ -88,7 +104,11 @@ Route::get('/specialists/api/{id}', [
     'specialist_doctor'
 ])->name('specialist_doctor');
 
-Route::get('/create/user', [
+Route::get('/user/create', [
     AuthController::class,
-    'register'
-])->name('register');
+    'registerUser'
+])->name('registerUser');
+Route::get('/user/create', [
+    AuthController::class,
+    'registerUser'
+])->name('registerUser');

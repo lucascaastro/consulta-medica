@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Registrar')
+@section('title', '| Médicos')
 
 @section('content')
 @include('components.navbar')
@@ -45,9 +45,8 @@
                                 <td>{{ $doctor->birth }}</td>
                                 <td>
                                     @foreach($specialists as $specialist)
-                                    {{ $specialist->name }}<br>
+                                    {{ $specialist->name }}
                                     @endforeach
-
                                 </td>
                                 <td>
                                     <a href="/doctors/edit/{{ $doctor->id }}">

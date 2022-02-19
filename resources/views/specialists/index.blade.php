@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '| Registrar')
+@section('title', '| Especialidades')
 
 @section('content')
 @include('components.navbar')

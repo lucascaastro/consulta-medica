@@ -16,28 +16,6 @@ class PatientController extends Controller
         return view('patients.index', compact('user', 'patients'));
     }
 
-    public function edit($id)
-    {
-
-        $patient = User::find($id);
-
-        return view('patients.edit', compact('patient'));
-    }
-
-    public function Update(Request $request, $id)
-    {
-        $patient = User::find($id);
-        $patient->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'cpf' => $request->cpf,
-            'rg' => $request->rg,
-            'birth' => $request->birth,
-            'password' => $request->password
-        ]);
-        return redirect('/patients/index');
-    }
-
     public function destroy($id)
 
     {

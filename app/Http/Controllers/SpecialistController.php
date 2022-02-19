@@ -7,6 +7,7 @@ use App\Http\Requests\StoreSpecialistRequest;
 use App\Http\Requests\UpdateSpecialistRequest;
 use Illuminate\Http\Request;
 
+
 class SpecialistController extends Controller
 {
     /**
@@ -28,9 +29,7 @@ class SpecialistController extends Controller
      */
     public function create()
     {
-        //
-
-
+        return view('specialists.create');
     }
 
     /**
@@ -39,9 +38,13 @@ class SpecialistController extends Controller
      * @param  \App\Http\Requests\StoreSpecialistRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSpecialistRequest $request)
+    public function store(Request $request)
     {
-        //
+        Specialist::create([
+            'name' => $request->name
+        ]);
+
+        return redirect('/dashboard');
     }
 
     /**

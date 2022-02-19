@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name='csrf-token' content='{{ csrf_token() }}'>
 
-    <title>Instact @yield('title')</title>
+    <title>Med Agend @yield('title')</title>
 
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap/css/bootstrap-icons.css') }}">
