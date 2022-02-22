@@ -40,10 +40,10 @@
                             @if($consults)
                             @foreach($consults as $consult)
                             <tr>
-                                <td>{{ $consult->patients->name }}</td>
-                                <td>{{ $consult->doctors->name }}</td>
-                                <td>{{ $consult->date }}</td>
-                                <td>{{ $consult->hour }}</td>
+                                <td>{{ $consult->patient->name }}</td>
+                                <td>{{ $consult->doctor->name }}</td>
+                                <td>{{ date( 'd/m/Y' , strtotime($consult->date))}}</td>
+                                <td>{{ date('H:i' , strtotime($consult->hour))}}</td>
                                 <td>
                                     <a href="/user/edit/">
                                         <button type="submit" class="btn btn-outline-success">
@@ -66,9 +66,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-
-
-
 @endsection

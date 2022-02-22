@@ -15,7 +15,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Nome</th>
                             <th>Email</th>
                             <th>CPF</th>
                             <th>RG</th>
@@ -25,7 +25,7 @@
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
+                            <th>Nome</th>
                             <th>Email</th>
                             <th>CPF</th>
                             <th>RG</th>
@@ -42,7 +42,7 @@
                             <td> {{ $patient->email }}</td>
                             <td>{{ $patient->cpf }}</td>
                             <td>{{ $patient->rg }}</td>
-                            <td>{{ $patient->birth }}</td>
+                            <td>{{ date( 'd/m/Y' , strtotime($patient->birth))}}</td>
                             <td>
                                 <a href="/user/edit/{{ $patient->id }}">
                                     <button type="submit" class="btn btn-outline-success">

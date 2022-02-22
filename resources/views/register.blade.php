@@ -16,7 +16,6 @@
         <form class="mw-100" action="{{ route('signup') }}" method="post" style="width: 400px;">
             @endif
             @csrf
-
             <div class="text-center mb-2 ">
                 <img src="{{ asset('images/logo.png') }}" width="150">
 

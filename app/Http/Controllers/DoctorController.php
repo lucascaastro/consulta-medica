@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Consult;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\DoctorsSpecialist;
@@ -12,13 +13,17 @@ class DoctorController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $specialists = DoctorsSpecialist::join('specialists', 'specialists.id', 'doctors_specialists.specialist_id')
-            ->where('specialists.id', '=', 'doctors_specialists.specialist_id')->get();
-        // ::join('users', 'users.id', 'doctors_specialists.doctor_id')
-        // ::where('specialists.id', '==', 'doctors_specialists.specialist_id')
-        // ::where('users.id', '==', 'doctors_specialists.doctor_id')->get();
+        $consults = Consult::all();
         $doctors = User::where('type', 'Médico')->get();
 
-        return view('doctors.index', compact('user', 'doctors', 'specialists'));
+        return view('doctors.index', compact('user', 'doctors', 'consults'));
+    }
+
+    public function destroy($id)
+
+    {
+        $doctor = User::find($id);
+        $doctor->delete();
+        return redirect('/doctors/index');
     }
 }

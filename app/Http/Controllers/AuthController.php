@@ -86,6 +86,7 @@ class AuthController extends Controller
      *
      * @return redirect
      */
+
     public function registerUser(Request $request)
     {
         DB::beginTransaction();

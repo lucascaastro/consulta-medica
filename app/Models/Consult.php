@@ -18,16 +18,16 @@ class Consult extends Model
         'hour'
     ];
 
-    public function doctors()
+    public function doctor()
     {
         return $this->belongsTo(User::class, 'doctor_id');
     }
-    public function patients()
+    public function patient()
     {
         return $this->belongsTo(User::class, 'patient_id');
     }
-    public function specialists()
+    public function specialist()
     {
-        return $this->belongsTo(User::class, 'specialist_id');
+        return $this->belongsTo(Specialist::class, 'specialist_id');
     }
 }

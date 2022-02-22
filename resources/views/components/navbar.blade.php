@@ -36,7 +36,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn" href="/doctor/index">
+                    <a class="nav-link btn" href="/doctors/index">
                         <i class=" bi bi-person-fill fs-5 btn-outline-success mr-4" style="margin-left: -76px;"></i>
                         <span class=" font-wei ght-bold text-success h6">Médicos</span>
                     </a>
@@ -60,7 +60,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link btn" href="{{ route('registerUser') }}">
+                    <a class="nav-link btn" href="{{ route('register') }}">
                         <i class="bi bi-person-plus-fill fs-5 btn-outline-success" style="margin-left: -22px;"></i>
                         <span class="font-weight-bold text-success h6">Criar um usuário</span>
                     </a>

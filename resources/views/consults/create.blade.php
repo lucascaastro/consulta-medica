@@ -64,7 +64,6 @@
         $.ajax({
             url: url,
             success: function( result ) {
-               // const  option = " <option disabled selected>Selecione o especialidade</option>";
                 const html = result.map(function(specialist){
                    return "<option value=" + specialist.specialists.id + ">" + specialist.specialists.name + "</option>"
                 }).join();

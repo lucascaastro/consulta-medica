@@ -15,37 +15,37 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Name</th>
+                                <th>Nome</th>
                                 <th>Email</th>
                                 <th>CPF</th>
                                 <th>RG</th>
                                 <th>Data de Nascimento</th>
-                                <th>Especialidades</th>
+                                <th>Especialidade</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Name</th>
+                                <th>Nome</th>
                                 <th>Email</th>
                                 <th>CPF</th>
                                 <th>RG</th>
                                 <th>Data de Nascimento</th>
-                                <th>Especialidades</th>
+                                <th>Especialidade</th>
                                 <th>Ações</th>
                             </tr>
                         </tfoot>
                         <tbody>
+                            @foreach($doctors as $doctor)
                             <tr>
-                                @foreach($doctors as $doctor)
                                 <td>{{ $doctor->name }}</td>
                                 <td> {{ $doctor->email }}</td>
                                 <td>{{ $doctor->cpf }}</td>
                                 <td>{{ $doctor->rg }}</td>
-                                <td>{{ $doctor->birth }}</td>
+                                <td>{{ date( 'd/m/Y' , strtotime($doctor->birth))}}</td>
                                 <td>
-                                    @foreach($specialists as $specialist)
-                                    {{ $specialist->name }}
+                                    @foreach($consults as $consult)
+                                    {{$consult->specialist->name }}
                                     @endforeach
                                 </td>
                                 <td>
@@ -54,9 +54,11 @@
                                             Editar
                                         </button>
                                     </a>
-                                    <button class=" btn btn-outline-danger">
-                                        Excluir
-                                    </button>
+                                    <a href="/doctors/delete/{{ $doctor->id }}">
+                                        <button class=" btn btn-outline-danger">
+                                            Excluir
+                                        </button>
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach

@@ -54,10 +54,15 @@ Route::get('/consults/delete/{id}', [
     'destroy'
 ])->middleware('auth');
 
-Route::get('/doctor/index', [
+Route::get('/doctors/index', [
     DoctorController::class,
     'index'
 ])->middleware('auth');
+
+Route::get('/doctors/delete/{id}', [
+    DoctorController::class,
+    'destroy'
+]);
 
 Route::get('/patients/index', [
     PatientController::class,
@@ -106,9 +111,10 @@ Route::get('/specialists/api/{id}', [
 
 Route::get('/user/create', [
     AuthController::class,
-    'registerUser'
-])->name('registerUser');
-Route::get('/user/create', [
+    'register'
+])->name('register');
+
+Route::post('/user/create', [
     AuthController::class,
     'registerUser'
 ])->name('registerUser');
