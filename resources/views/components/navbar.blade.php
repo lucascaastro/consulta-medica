@@ -23,7 +23,13 @@
         <a class="nav-link me-3 mb-4" href="/dashboard">
             <img src="{{ asset('images/logo.png') }}" width="100">
         </a>
-        <h1 class=" fs-6 text-success">Olá - {{ auth()->user()->name }}</h1>
+        @if(auth()->user()->type == 'Operador')
+        <h1 class=" fs-6 text-success">Olá {{ auth()->user()->type }} - {{ auth()->user()->name }}</h1>
+        @elseif(auth()->user()->type == 'Médico')
+        <h1 class=" fs-6 text-success">Olá {{ auth()->user()->type }} - {{ auth()->user()->name }}</h1>
+        @else
+        <h1 class=" fs-6 text-success">Olá {{ auth()->user()->type }} - {{ auth()->user()->name }}</h1>
+        @endif
     </div>
     <div class="container-fluid" style="width: 900px; max-width: 100%;">
         <div class="navbar-nav flex-column">
