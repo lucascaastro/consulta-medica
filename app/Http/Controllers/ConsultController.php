@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Consult;
+use Illuminate\Http\Request;
 use App\Models\MedSpecialist;
 use App\Models\DoctorsSpecialist;
 use App\Http\Requests\StoreConsultRequest;
@@ -82,9 +83,19 @@ class ConsultController extends Controller
      * @param  \App\Models\Consult  $consult
      * @return \Illuminate\Http\Response
      */
-    public function edit(Consult $consult)
+    public function edit($id)
     {
-        //
+        $users = auth()->user();
+
+        $specialists = DoctorsSpecialist::join('specialists', 'specialists.id', 'doctors_specialists.specialist_id')
+            ->where('specialists.id', '=', 'doctors_specialists.specialist_id')->get();
+
+        $patients = User::where('type', 'Paciente')->get();
+        $doctors = User::where('type', 'Médico')->get();
+
+        $consult = Consult::find($id);
+
+        return view('consults.edit', compact('consult', 'specialists', 'patients', 'doctors'));
     }
 
     /**
@@ -94,9 +105,17 @@ class ConsultController extends Controller
      * @param  \App\Models\Consult  $consult
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateConsultRequest $request, Consult $consult)
+    public function update(Request $request, $id)
     {
-        //
+        $consult = Consult::find($id);
+        $consult->update([
+            'doctor_id' => $request->doctor_id,
+            'patient_id' => $request->patient_id,
+            'specialist_id' => $request->specialist_id,
+            'date' => $request->date,
+            'hour' => $request->hour
+        ]);
+        return redirect('dashboard');
     }
 
     /**

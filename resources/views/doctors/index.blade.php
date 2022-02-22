@@ -49,7 +49,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    <a href="/doctors/edit/{{ $doctor->id }}">
+                                    <a href="/user/edit/{{ $doctor->id }}">
                                         <button type="submit" class="btn btn-outline-success">
                                             Editar
                                         </button>

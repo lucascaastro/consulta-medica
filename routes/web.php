@@ -49,6 +49,16 @@ Route::post('/consults/store', [
     'store'
 ])->middleware('auth');
 
+Route::get('/consults/edit/{id}', [
+    ConsultController::class,
+    'edit'
+])->middleware('auth');
+
+Route::post('/consults/update/{id}', [
+    ConsultController::class,
+    'update'
+])->middleware('auth');
+
 Route::get('/consults/delete/{id}', [
     ConsultController::class,
     'destroy'
